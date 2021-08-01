@@ -54,10 +54,10 @@ class Todo
 
   ##
   # Compare the todo's title, description and status with another todo's.
-  def ==(otherTodo)
-    title == otherTodo.title &&
-      description == otherTodo.description &&
-      done == otherTodo.done
+  def ==(other_todo)
+    title == other_todo.title &&
+      description == other_todo.description &&
+      done == other_todo.done
   end
 end
 
@@ -110,7 +110,7 @@ class TodoList
   # Returns true if all todo objects in the collection are done; otherwise
   # false.
   def done?
-    @todos.all? { |todo| todo.done? }
+    @todos.all?(&:done?)
   end
 
   ##
@@ -123,7 +123,7 @@ class TodoList
 
     @todos << todo
   end
-  alias_method :add, :<<
+  alias add <<
 
   ##
   # Returns the element at offset index.
@@ -202,7 +202,7 @@ class TodoList
   ##
   # Returns a list of todo which are done.
   def all_done
-    select { |todo| todo.done? }
+    select(&:done?)
   end
 
   ##
@@ -214,18 +214,18 @@ class TodoList
   ##
   # Marks todo as done after retrieving it by title, or nil if no match.
   def mark_done(title)
-    find_by_title(title) && find_by_title(title).done!
+    find_by_title(title)&.done!
   end
 
   ##
   # Marks all todos as done.
   def mark_all_done
-    each { |todo| todo.done! }
+    each(&:done!)
   end
 
   ##
   # Marks all todos as undone.
   def mark_all_undone
-    each { |todo| todo.undone! }
+    each(&:undone!)
   end
 end

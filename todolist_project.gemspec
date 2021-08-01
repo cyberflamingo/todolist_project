@@ -10,5 +10,5 @@ Gem::Specification.new do |spec|
   spec.license       = "MIT"
   spec.required_ruby_version = ">= 2.5.0"
 
-  spec.files         = ['lib/todolist_project.rb', 'test/todolist_project_test.rb']
+  spec.files = ['lib/todolist_project.rb', 'test/todolist_project_test.rb']
 end

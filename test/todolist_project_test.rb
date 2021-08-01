@@ -148,7 +148,9 @@ class TodoListTest < MiniTest::Test
   end
 
   def test_each_returns_original_list
-    assert_equal(@list, @list.each {|todo| nil })
+    # rubocop:disable Lint/Void
+    assert_equal(@list, @list.each { |_todo| nil })
+    # rubocop:enable Lint/Void
   end
 
   def test_select
@@ -157,7 +159,7 @@ class TodoListTest < MiniTest::Test
     list.add(@todo1)
 
     assert_equal(list.title, @list.title)
-    assert_equal(list.to_s, @list.select{ |todo| todo.done? }.to_s)
+    assert_equal(list.to_s, @list.select(&:done?).to_s)
   end
 
   def test_no_due_date

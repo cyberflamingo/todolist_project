@@ -4,7 +4,7 @@ require 'rake/testtask'
 require 'find'
 
 desc 'Run tests'
-task :default => :test
+task default: :test
 
 desc 'Say hello'
 task :hello do
@@ -36,5 +36,5 @@ RDoc::Task.new do |doc|
   doc.main = 'README.md'
   doc.title = "TodoList Documentation"
   doc.rdoc_dir = 'doc'
-  doc.rdoc_files = FileList.new %w[lib/**/*.rb]
+  doc.rdoc_files = FileList.new %w(lib/**/*.rb)
 end
