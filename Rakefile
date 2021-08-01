@@ -1,3 +1,5 @@
+require 'rdoc/task'
+require 'bundler/gem_tasks'
 require 'rake/testtask'
 require 'find'
 
@@ -28,4 +30,11 @@ task :inventory do
       puts path unless file_basename.start_with?('.')
     end
   end
+end
+
+RDoc::Task.new do |doc|
+  doc.main = 'README.md'
+  doc.title = "TodoList Documentation"
+  doc.rdoc_dir = 'doc'
+  doc.rdoc_files = FileList.new %w[lib/**/*.rb]
 end
